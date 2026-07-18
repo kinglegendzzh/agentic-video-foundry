@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agentic Video Foundry"
+  short_description: "从创意脚本到动效、声音、质检与交付的完整视频生产管线"
+  default_prompt: "Use $agentic-video-foundry to turn my brief into a polished vertical social video with verified visuals and audio."
