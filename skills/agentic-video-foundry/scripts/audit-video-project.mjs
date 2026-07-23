@@ -41,7 +41,7 @@ const walk = (directory, output = []) => {
 };
 
 const files = walk(project);
-const secretPattern = /(?:sk_[A-Za-z0-9_-]{20,}|xi-api-key\s*[:=]\s*["'][^"']{12,})/g;
+const secretPattern = /(?:sk_[A-Za-z0-9_-]{20,}|ark-[A-Za-z0-9-]{20,}|(?:xi-api-key|x-api-key)\s*[:=]\s*["'][^"']{12,})/gi;
 const nondeterministicPattern = /\b(?:Date\.now|setTimeout|setInterval|Math\.random)\s*\(|\banimation\s*:/g;
 for (const path of files) {
   const text = readFileSync(path, 'utf8');
@@ -92,7 +92,14 @@ if (video) {
   if (!existsSync(video)) add('FAIL', `Final video not found: ${video}`);
   else {
     try {
-      const probe = execFileSync('ffprobe', [
+      const ffprobe = [
+        process.env.FFPROBE_PATH,
+        '/opt/homebrew/bin/ffprobe',
+        '/usr/local/Homebrew/opt/ffmpeg/bin/ffprobe',
+        '/usr/local/bin/ffprobe',
+        'ffprobe',
+      ].find((candidate) => candidate === 'ffprobe' || (candidate && existsSync(candidate)));
+      const probe = execFileSync(ffprobe, [
         '-v', 'error', '-show_entries',
         'format=duration,bit_rate:stream=index,codec_type,codec_name,width,height,r_frame_rate,sample_rate,channels',
         '-of', 'json', video,

@@ -1,0 +1,73 @@
+{
+  "id": "flat-paper-collage-stop-motion",
+  "version": 1,
+  "renderer": "remotion",
+  "canvas": {
+    "background": "#F5EDD8",
+    "safeArea": {
+      "top": 120,
+      "right": 150,
+      "bottom": 300,
+      "left": 72
+    }
+  },
+  "palette": {
+    "ink": "#25221F",
+    "paper": "#F5EDD8",
+    "clay": "#A96D3D",
+    "grass": "#6F8F45",
+    "sky": "#69AFC4",
+    "accent": "#8B6BB0",
+    "edge": "#FFF8E8"
+  },
+  "typography": {
+    "languagePriority": "zh-CN",
+    "fontFamily": "PingFang SC, Noto Sans CJK SC, sans-serif",
+    "maxHeadlineCjk": 12,
+    "maxLabelCjk": 8,
+    "maxLabelsPerFrame": 2
+  },
+  "paper": {
+    "treatment": "illustrated-cutout",
+    "textureOpacity": 0.16,
+    "edge": {
+      "kind": "torn-or-cut-white",
+      "roughness": 0.36,
+      "width": 8
+    },
+    "shadow": {
+      "offsetX": 12,
+      "offsetY": 14,
+      "blur": 12,
+      "opacity": 0.2
+    }
+  },
+  "motion": {
+    "stopMotionFps": 10,
+    "holdFrames": 3,
+    "maxRotationDegrees": 3,
+    "maxSettleOvershoots": 1,
+    "seed": "agentic-video-foundry-paper-v1",
+    "forbidden": [
+      "continuous-floating",
+      "shape-morphing",
+      "unseeded-random-jitter",
+      "simultaneous-everything"
+    ]
+  },
+  "density": {
+    "maxHeroes": 1,
+    "maxSupporters": 2,
+    "decorationsAreStatic": true
+  },
+  "evidenceTreatment": "pasted-original-window",
+  "transitions": {
+    "allowed": [
+      "paper-wipe",
+      "hand-set-slide",
+      "page-push",
+      "tape-stick"
+    ],
+    "maxFamiliesPerVideo": 2
+  }
+}

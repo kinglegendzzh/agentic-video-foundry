@@ -5,7 +5,7 @@
 [![Agent Skill](https://img.shields.io/badge/Agent%20Skill-Codex%20%7C%20Claude%20Code%20%7C%20Gemini-7C3AED)](#安装)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22C55E.svg)](LICENSE)
 [![Renderers](https://img.shields.io/badge/Renderers-Remotion%20%7C%20HyperFrames-06B6D4)](#智能场景路由)
-[![Audio](https://img.shields.io/badge/Audio-ElevenLabs%20ready-F97316)](#声音不是附属品)
+[![Audio](https://img.shields.io/badge/Audio-ElevenLabs%20%7C%20Volcengine-F97316)](#声音不是附属品)
 
 **Agentic Video Foundry**（智能视频铸造厂）是一套面向 coding agents 的全流程短视频生产 Skill。它不会在“脚本写完了”或“渲染命令成功了”时提前宣布完成，而是把创意、分镜、配音、音乐、音效、字幕、动效、混音、渲染、视听质检和交付串成一条可复现的生产线。
 
@@ -15,7 +15,10 @@
 
 - **成片负责制**：终点是看过、听过、测过的发布文件，不是中间产物。
 - **声音驱动时间轴**：真实旁白时间戳生成场景与字幕，拒绝估算和机械加速。
+- **双音频后端**：ElevenLabs 与火山豆包语音可按旁白、音乐、音效分别选择，工程层不绑定供应商。
+- **真实 Demo 优先**：工具介绍片用真实界面、命令和输出证明能力，动效只负责聚焦与解释。
 - **智能场景路由**：Remotion、Text-to-Lottie、HyperFrames 和 Remotion Scenes 各做擅长的事。
+- **渐进式风格模块**：主 Skill 只做风格选择，选中后才加载具体材质、排版、运动语法和硬失败项。
 - **可听见的音乐**：BGM 在手机外放上有存在感，同时不遮住人声。
 - **可复现与可审计**：固定依赖、素材哈希、无密钥 manifest、确定性逐帧动画。
 - **质量硬闸门**：代表帧、平台安全区、完整视听、LUFS、dBTP、编码参数一个都不少。
@@ -55,9 +58,22 @@ flowchart LR
 
 Agentic Video Foundry 不鼓励“为了技术栈全家桶而混用”。每个镜头先做需求路由，最终由一个主时间轴收口。
 
+## 可扩展风格模块
+
+风格不是一组散乱滤镜，而是材质、配色、排版、证据处理、运动语法、转场和失败条件的完整契约。Foundry 使用渐进式披露：先读取[风格路由](skills/agentic-video-foundry/references/style-routing.md)，选中后才加载具体模块。
+
+首个内置模块是[手撕纸拼贴定格](skills/agentic-video-foundry/references/styles/flat-paper-collage-stop-motion.md)：暖米纸底、扁平纸片、统一撕边与右下投影、离散定格运动、中文优先；真实产品 Demo 仍保留在“贴纸窗口”里，不会被虚构插画替代。默认参数可直接复制自 [`flat-paper-collage-stop-motion.json`](skills/agentic-video-foundry/assets/style-presets/flat-paper-collage-stop-motion.json)，并在不破坏硬约束的前提下覆盖品牌色、字体、纹理强度和定格步长。
+
 ## 声音不是附属品
 
-以 ElevenLabs 为例，Agentic Video Foundry 会先生成同稿候选试听，再按语义段落生成带时间戳旁白；音乐提示词包含 BPM、乐器、情绪曲线和明确结尾；音效只强化关键落点。密钥只从 Keychain 或环境变量读取，永不进入源码、日志或 manifest。
+Agentic Video Foundry 支持 ElevenLabs 与火山豆包语音/OpenSpeech。两者都先生成同稿候选试听，再按语义段落生成带时间戳旁白；音乐提示词包含 BPM、乐器、情绪曲线和明确结尾；音效只强化关键落点。供应商通过无密钥计划切换，密钥只从 Keychain 或环境变量读取，永不进入源码、日志或 manifest。火山能力可按 `cost`、`balanced`、`quality` 三档路由，避免“开通了就全用”。详细能力边界和命令见 [音频供应商路由](skills/agentic-video-foundry/references/audio-provider-routing.md)与[火山模型路由](skills/agentic-video-foundry/references/volcengine-model-routing.md)。
+
+对话里粘贴过的密钥应先轮换，再交互式写入 Keychain：
+
+```bash
+~/.agents/skills/agentic-video-foundry/scripts/store-audio-credential.sh volcengine
+~/.agents/skills/agentic-video-foundry/scripts/store-audio-credential.sh elevenlabs
+```
 
 任何声线、BGM、SFX、时间或增益变化，都会使旧的母带测量失效。最终成片必须重新测完整响度和真峰值，并用手机外放实际听一遍。
 
@@ -122,7 +138,7 @@ agentic-video-foundry/
         ├── SKILL.md
         ├── agents/openai.yaml
         ├── references/
-        └── scripts/audit-video-project.mjs
+        └── scripts/{audit-video-project,audio-provider}.mjs
 ```
 
 ## License
