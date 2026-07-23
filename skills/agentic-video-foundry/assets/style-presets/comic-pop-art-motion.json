@@ -1,0 +1,92 @@
+{
+  "id": "comic-pop-art-motion",
+  "version": 1,
+  "renderer": "remotion",
+  "canvas": {
+    "background": "#FFF7E8",
+    "safeArea": {
+      "top": 120,
+      "right": 150,
+      "bottom": 300,
+      "left": 72
+    }
+  },
+  "palette": {
+    "ink": "#101010",
+    "paper": "#FFF7E8",
+    "yellow": "#FFD400",
+    "cyan": "#00B7D9",
+    "red": "#F2385A",
+    "blue": "#2457D6",
+    "green": "#7AC943"
+  },
+  "typography": {
+    "languagePriority": "zh-CN",
+    "fontFamily": "PingFang SC, Noto Sans CJK SC, sans-serif",
+    "maxHeadlineCjk": 10,
+    "maxLabelsPerFrame": 1,
+    "maxOnomatopoeiaPerShot": 1
+  },
+  "print": {
+    "outlineWidth": 10,
+    "shadow": {
+      "kind": "hard-offset",
+      "offsetX": 12,
+      "offsetY": 12,
+      "opacity": 1
+    },
+    "halftone": {
+      "dotDiameter": 7,
+      "spacing": 14,
+      "maxCoverage": 0.3,
+      "forbiddenOnEvidence": true
+    },
+    "registrationOffset": {
+      "maxPixels": 6,
+      "decorativeOnly": true
+    }
+  },
+  "motion": {
+    "personality": "energetic",
+    "baseUnitFrames": 6,
+    "staggerFrames": [
+      3,
+      6
+    ],
+    "heroPunchScale": [
+      1,
+      1.12,
+      1
+    ],
+    "maxHeroOvershoot": 0.12,
+    "maxSupportOvershoot": 0.05,
+    "resultHoldFrames": 18,
+    "seed": "agentic-video-foundry-pop-v1",
+    "forbidden": [
+      "continuous-camera-breathing",
+      "unseeded-jitter",
+      "3d-card-flip",
+      "liquid-morph",
+      "strobing"
+    ]
+  },
+  "density": {
+    "maxHeroes": 1,
+    "maxSupporters": 2,
+    "maxHighSaturationColors": 3,
+    "maxPanelsAtPeak": 3,
+    "subjectOccupancy": [
+      0.4,
+      0.68
+    ]
+  },
+  "evidenceTreatment": "pixel-accurate-comic-panel",
+  "transitions": {
+    "allowed": [
+      "panel-slam",
+      "ink-wipe",
+      "match-cut"
+    ],
+    "maxFamiliesPerVideo": 2
+  }
+}
