@@ -14,11 +14,14 @@
   "palette": {
     "ink": "#25221F",
     "paper": "#F5EDD8",
-    "clay": "#A96D3D",
-    "grass": "#6F8F45",
-    "sky": "#69AFC4",
-    "accent": "#8B6BB0",
-    "edge": "#FFF8E8"
+    "clay": "#8B6340",
+    "clayDark": "#6B4A2E",
+    "grass": "#5C8A3A",
+    "sky": "#7EC8E3",
+    "accent": "#9B7EBD",
+    "warmYellow": "#F0C75E",
+    "line": "#3D2B1F",
+    "edge": "#FAF6EC"
   },
   "typography": {
     "languagePriority": "zh-CN",
@@ -43,8 +46,23 @@
     }
   },
   "motion": {
-    "stopMotionFps": 10,
-    "holdFrames": 3,
+    "holdPattern": [
+      4,
+      3,
+      6,
+      2,
+      5,
+      3
+    ],
+    "resultHoldFrames": [
+      15,
+      36
+    ],
+    "microSway": {
+      "maxPixels": 6,
+      "maxDegrees": 1,
+      "asynchronous": true
+    },
     "maxRotationDegrees": 3,
     "maxSettleOvershoots": 1,
     "seed": "agentic-video-foundry-paper-v1",
@@ -58,6 +76,11 @@
   "density": {
     "maxHeroes": 1,
     "maxSupporters": 2,
+    "maxPaperGroups": 6,
+    "subjectOccupancy": [
+      0.35,
+      0.6
+    ],
     "decorationsAreStatic": true
   },
   "evidenceTreatment": "pasted-original-window",
